@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Container.Services.Input;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,11 @@ namespace Container
     {
         public async Task RunAsync()
         {
-            throw new NotImplementedException();
+            await Task.Run(async () => 
+            {
+                using InputListener lis = new InputListener();
+                await Task.Delay(100000);
+            });
         }
     }
 }
