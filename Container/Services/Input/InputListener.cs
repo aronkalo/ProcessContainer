@@ -35,3 +35,45 @@ namespace Container.Services.Input
         }
     }
 }
+
+
+//class Program
+//{
+//    private delegate void LowLevelHookProcedure(int nCode, IntPtr wParam, IntPtr lParam);
+//    private static LowLevelHookProcedure _hookProcedure;
+
+//    static void Main(string[] args)
+//    {
+//        _hookProcedure += Proc;
+//        SetCallback(_hookProcedure);
+//        InitLogger();
+//        while (true)
+//        {
+//            string st = Console.ReadLine();
+//            Console.WriteLine(st);
+//        }
+//    }
+
+//    private static void Proc(int nCode, IntPtr wParam, IntPtr lParam)
+//    {
+//        ;
+//    }
+
+//    [DllImport("Container.Win32.dll", SetLastError = true, CallingConvention = CallingConvention.Cdecl)]
+//    static extern void SetCallback(LowLevelHookProcedure proc);
+
+//    [DllImport("Container.Win32.dll", SetLastError = true, CallingConvention = CallingConvention.Cdecl)]
+//    static extern void KeyboardLogger();
+
+//    [DllImport("Container.Win32.dll", SetLastError = true, CallingConvention = CallingConvention.Cdecl)]
+//    static extern void InitLogger();
+
+//    [DllImport("user32.dll", CharSet = CharSet.Auto,
+//        CallingConvention = CallingConvention.StdCall, SetLastError = true)]
+//    static extern IntPtr SetWindowsHookEx(int idHook, LowLevelHookProcedure lpfn, IntPtr hMod, int dwThreadId);
+
+//    // Retrieves a module handle for the specified module.
+//    // The module must have been loaded by the calling process.
+//    [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+//    private static extern IntPtr GetModuleHandle(string lpModuleName);
+//}

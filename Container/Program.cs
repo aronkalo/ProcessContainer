@@ -5,13 +5,16 @@ using Microsoft.Extensions.Logging;
 using Serilog;
 using System;
 using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Container
 {
     class Program
     {
-        public static IConfigurationRoot _configuration;
+        private static IConfigurationRoot _configuration;
+        private static CancellationTokenSource _tokenSource = new CancellationTokenSource();
+        private static CancellationToken _cancellationToken = _tokenSource.Token;
 
         static int Main(string[] args)
         {
@@ -22,6 +25,10 @@ namespace Container
 
             try
             {
+                Console.CancelKeyPress += (sender, eventArgs) =>
+                {
+                    _tokenSource.Cancel();
+                };
                 MainAsync(args).Wait();
                 return 0;
             }
@@ -42,7 +49,7 @@ namespace Container
             try
             {
                 Log.Information("Starting service");
-                await serviceProvider.GetService<App>().RunAsync();
+                await serviceProvider.GetService<App>().RunAsync(_cancellationToken);
                 Log.Information("Ending service");
             }
             catch (Exception ex)

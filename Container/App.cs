@@ -1,4 +1,4 @@
-﻿using Container.Services.Input;
+﻿using Container.Input.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +9,10 @@ namespace Container
 {
     public class App
     {
-        public async Task RunAsync()
+        public async Task RunAsync(System.Threading.CancellationToken _cancellationToken)
         {
-            await Task.Run(async () => 
-            {
-                using InputListener lis = new InputListener();
-                await Task.Delay(100000);
-            });
+            using WindowsGlobalHook wGlobalHook = new WindowsGlobalHook();
+
         }
     }
 }
